@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-sm bg-secondary ">
+
+  <!-- Links -->
+  <ul class="navbar-nav m-2">
+    <li class="nav-item">
+      <a class="btn btn-light" href="{{ path('home')}}">Accueil</a>
+    </li>
+    <br>
+  </ul>
+
+  {% if app.user %}
+   <ul class="navbar-nav bg-secondary m-2">
+      <li class="nav-item">
+        <a class="btn btn-light" href="{{ path('chat_channel')}}">Chat</a>
+      </li>
+    </ul>
+     {% if is_granted('ROLE_ADMIN') %}
+                      <ul class="navbar-nav m-2cd">
+      <li class="nav-item">
+        <a class="btn btn-light" href="{{ path('user_index')}}">Gerer les utilisateurs</a>
+      </li>
+    </ul>
+              {% endif %}
+
+    <ul class="navbar-nav ml-auto">
+      <div class="collapse navbar-collapse " id="navbarCollapse">
+        <li class="nav-item ">
+           <div class="dropdown">
+           <a class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             
+              {% if app.user.urlimage %}
+                <div class="text-center">
+                  <img src="../../{{ app.user.urlimage }}" class="rounded mx-auto d-block" style="max-width:30px" alt="...">{{ app.user.username }}
+                </div>
+              {% else %}
+                <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" class="rounded mx-auto d-block" style="max-width:30px" alt="...">
+                  {{ app.user.username }}</div>
+              {% endif %}
+    
+            </a>
+             
+            
+             
+           <div class="dropdown-menu pull-right " aria-labelledby="dropdownMenuButton">
+            <a class="nav-link " href="{{ path('app_profil')}}">Profil</a>
+            <a class="nav-link" href="{{ path('app_logout')}}">Se deconnecter</a>
+          </div>
+           </div>
+         </li>
+    </div>
+  </ul>
+{% else %}
+                    <ul class="navbar-nav  ">
+      <li class="nav-item pull-right">
+        <a class="btn btn-light" href="{{ path('app_login')}}">Se connecter</a>
+      </li>
+    </ul>
+         
+{% endif %}
+
+</nav>

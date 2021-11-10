@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Chat{% endblock %}
+
+{% block body %}
+{% include 'navbar/navbar.html.twig'%}
+<div class="container">
+    <h1>Creer un nouveau canal</h1>
+
+    {{ form_start(channelForm,{'class': 'col-lg-6 offset-lg-3'}) }}
+        {{ form_row(channelForm.name, { 'label': 'Nom du canal :','attr': {'class': 'form-control'}}) }}
+    
+        <br>
+        <button type="submit" class="btn btn-lg btn-primary">Creer</button>
+    {{ form_end(channelForm) }}
+<div>
+
+{% endblock %}

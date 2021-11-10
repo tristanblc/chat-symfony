@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+{% include 'navbar/navbar.html.twig'%}
+<div class="container">
+  
+<div>
+<div class="container">
+<div class="row">
+   <div class="col-xs-4 panel border" >
+   <h3>Mon profil</h3>
+   <h4>Nom utilisateur : {{ app.user.username }}</h4>
+    <picture>
+  <source srcset="..." type="image/svg+xml">
+  {% if app.user.urlimage %}
+   <div class="text-center">
+  <img src="../../{{ app.user.urlimage }}" class="rounded mx-auto d-block" style="max-width:100px"alt="...">
+  <br>
+ 
+</div>
+  {% else %}
+</picture>
+  <div class="text-center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" class="rounded mx-auto d-block" style="max-width:100px"alt="...">
+</div>
+  {% endif %}
+
+</picture>
+</div>
+<div class="col-xs-4 panel border" >
+<h3>Gerer votre image</h3>
+  {{ form_start(form2,{'class': 'col-lg-6 offset-lg-3'}) }}
+        {{ form_label(form2.upload_file) }}
+          {{ form_widget(form2.upload_file) }}
+          {{ form_errors(form2.upload_file) }}
+          <br>
+         {{ form_widget(form2.send, {'label': "Changer votre image de profil", 'attr' : { 'class': 'btn btn-primary' }}) }}
+       
+    {{ form_end(form2) }}
+    {{ form_start(form,{'class': 'col-lg-6 offset-lg-3'}) }}
+    {{ form_start(form,{'class': 'col-lg-6 offset-lg-3'}) }}
+    <br>
+    {% if app.user.urlimage %}
+     <a href="{{ path('app_supprimer_image')}}" class="btn  btn-danger">Supprimer mon image de profil</a>
+      <br>
+    {% endif %}
+   
+</div>
+</div>
+<br>
+<br>
+        {{ form_row(form.password, {
+            'label': 'Mot de passe',
+            'attr': {'class': 'form-control'}
+        }) }}
+        <br>
+     
+        <div class="form-group">
+        <br>
+          {{ form_widget(form.send, {'label': "Modifier", 'attr' : { 'class': 'btn btn-primary' }}) }}
+           
+        </div>
+        {{ form_rest(form) }}
+      {{ form_end(form) }}
+    
+        </div>
+</div>
+
+{% endblock %}

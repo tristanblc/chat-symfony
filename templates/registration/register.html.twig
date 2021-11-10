@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block body %}
+{% include 'navbar/navbar.html.twig'%}
+<div class="container">
+    <h1>S'inscrire</h1>
+
+    {{ form_start(registrationForm,{'class': 'col-lg-6 offset-lg-3'}) }}
+        {{ form_row(registrationForm.username, { 'label': 'Username','attr': {'class': 'form-control'}}) }}
+        {{ form_row(registrationForm.plainPassword, {
+            'label': 'Mot de passe',
+            'attr': {'class': 'form-control'}
+        }) }}
+        {{ form_row(registrationForm.agreeTerms,{'label': 'CGU'})}}
+
+        <button type="submit" class="btn btn-lg btn-primary">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+<div>
+
+{% endblock %}
